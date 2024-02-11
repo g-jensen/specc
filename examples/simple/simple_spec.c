@@ -1,4 +1,4 @@
-#include "../../src/main.h"
+#include "../../src/specc.h"
 
 module(simple, {
   

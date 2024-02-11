@@ -25,7 +25,7 @@ extern char* __current_fmt;
 
 void __fun_list_add(__function f);
 void __printf_color(const char* color,const char * format, ...);
-char* __type_to_fmt(const char* type);
+const char* __type_to_fmt(const char* type);
 void __printf_expected_actual();
 
 void static print_summary(size_t pass_count, size_t fail_count);
@@ -84,7 +84,7 @@ void static printf_void(void* ptr);
   __spec_actual_ptr = (type*)malloc(sizeof(type)); \
   memcpy(__spec_expected_ptr,&temp_expected,sizeof(type)); \
   memcpy(__spec_actual_ptr,&temp_actual,sizeof(type)); \
-  __current_fmt = __type_to_fmt(#type); \
+  __current_fmt = (char*)__type_to_fmt(#type); \
 
 #define should_eq(expected, actual, type) \
   if ((expected) != (actual)) { \

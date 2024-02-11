@@ -1,4 +1,4 @@
-#include "main.h"
+#include "specc.h"
 
 __fun_list* __head = NULL; 
 __fun_list* __tail = NULL;
@@ -33,7 +33,7 @@ void __printf_color(const char* color, const char * format, ...) {
   printf(SPECC_COLOR_CLEAR);
 }
 
-char* __type_to_fmt(const char* type) {
+const char* __type_to_fmt(const char* type) {
   if      (strcmp("char",type) == 0)
     return "\'%c\'";
   else if (strcmp("int",type) == 0)
