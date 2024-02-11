@@ -25,10 +25,10 @@ module(simple, {
     it("failing float test",
       should_eq(0.9f,2.4f,float););
 
-    it("failing pointer test",
+    it("failing pointer test", {
       int a = 5;
       int b = 5;
-      should_eq(&a,&b,int*););
+      should_eq(&a,&b,int*);});
 
     it("failing string test",
       should_str_eq("hello","bye"););});});
