@@ -76,26 +76,45 @@ void static printf_void(void* ptr);
 
 #define should_not(assertion) should(!(assertion))
 
+#define eq_fail(expected,actual,type)\
+  fail(); \
+  type temp_expected = expected; \
+  type temp_actual = actual; \
+  __spec_expected_ptr = (type*)malloc(sizeof(type)); \
+  __spec_actual_ptr = (type*)malloc(sizeof(type)); \
+  memcpy(__spec_expected_ptr,&temp_expected,sizeof(type)); \
+  memcpy(__spec_actual_ptr,&temp_actual,sizeof(type)); \
+  __current_fmt = __type_to_fmt(#type); \
+
 #define should_eq(expected, actual, type) \
   if ((expected) != (actual)) { \
     fail(); \
-    type temp_expected = expected; \
-    type temp_actual = actual; \
-    __spec_expected_ptr = (type*)malloc(sizeof(type)); \
-    __spec_actual_ptr = (type*)malloc(sizeof(type)); \
-    memcpy(__spec_expected_ptr,&temp_expected,sizeof(type)); \
-    memcpy(__spec_actual_ptr,&temp_actual,sizeof(type)); \
-    __current_fmt = __type_to_fmt(#type); \
+    eq_fail(expected,actual,type); \
   }
+
+#define should_not_eq(expected, actual, type) \
+  if ((expected) == (actual)) { \
+    fail(); \
+    eq_fail(expected,actual,type); \
+  }
+
+#define str_eq_fail(expected,actual) \
+  size_t expected_size = sizeof(char)*strlen(expected); \
+  size_t actual_size = sizeof(char)*strlen(actual); \
+  __spec_expected_ptr = (char*)malloc(expected_size); \
+  __spec_actual_ptr = (char*)malloc(actual_size); \
+  strcpy(__spec_expected_ptr,expected); \
+  strcpy(__spec_actual_ptr,actual); \
+  __current_fmt = "\"%s\""; \
 
 #define should_str_eq(expected, actual) \
   if (strcmp(expected,actual) != 0) { \
     fail(); \
-    size_t expected_size = sizeof(char)*strlen(expected); \
-    size_t actual_size = sizeof(char)*strlen(actual); \
-    __spec_expected_ptr = (char*)malloc(expected_size); \
-    __spec_actual_ptr = (char*)malloc(actual_size); \
-    strcpy(__spec_expected_ptr,expected); \
-    strcpy(__spec_actual_ptr,actual); \
-    __current_fmt = "\"%s\""; \
+    str_eq_fail(expected,actual); \
+  }
+
+#define should_str_not_eq(expected, actual) \
+  if (strcmp(expected,actual) == 0) { \
+    fail(); \
+    str_eq_fail(expected,actual); \
   }
