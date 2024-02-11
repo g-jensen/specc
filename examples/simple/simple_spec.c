@@ -1,0 +1,37 @@
+#include "../../src/main.h"
+
+module(simple, {
+  
+  describe("simple test",{
+    
+    it("this is what a passing test looks like",{
+      should(1 == 1);
+    });
+
+    it("failing boolean test",{
+      should(1 == 0);
+    });
+
+    it("failing char test", {
+      should_eq('a','b',char);
+    });
+
+    it("failing int test", {
+      should_eq(1,2,int);
+    });
+
+    it("failing float test", {
+      should_eq(0.9f,2.4f,float);
+    });
+
+    it("failing pointer test", {
+      int a = 5;
+      int b = 5;
+      should_eq(&a,&b,int*);
+    });
+
+    it("failing string test", {
+      should_str_eq("hello","bye");
+    });
+  });
+});

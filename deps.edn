@@ -1,0 +1,4 @@
+{:paths   ["runner"]
+ :deps    {org.clojure/clojure         {:mvn/version "1.10.1"}}
+ :aliases {:specc-all    {:main-opts ["-m" "specc-runner" "src" "examples/simple" "examples/string"]}
+           :specc {:main-opts ["-m" "specc-runner" "src"]}}}
