@@ -48,9 +48,9 @@ Output:
 
 # Buildling
 ## Custom
-specc's entry point is in `src/main.c` so all you have to do is
+specc's entry point is in `src/specc.c` so all you have to do is
 ```
-gcc -c src/main.c
+gcc -c src/specc.c
 ```
 and then link all of your spec files.
 
