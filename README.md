@@ -45,6 +45,8 @@ Output:
 * `should_not_eq` (for primitives)
 * `should_str_eq`
 * `should_str_not_eq`
+* `should_double_eq` (with given err)
+* `should_double_not_eq` (with given err)
 
 # Buildling
 ## Custom
