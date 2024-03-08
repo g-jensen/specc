@@ -118,3 +118,15 @@ void static printf_void(void* ptr);
     fail(); \
     str_eq_fail(expected,actual); \
   }
+
+#define should_double_eq(expected,actual,err)\
+  if (!(expected+err >= actual && expected-err <= actual)) {\
+   __fail(); \
+   eq_fail(expected,actual,double); \
+  }
+
+#define should_double_not_eq(expected,actual,err)\
+  if (expected+err >= actual && expected-err <= actual) {\
+   __fail(); \
+   eq_fail(expected,actual,double); \
+  }
