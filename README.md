@@ -4,7 +4,7 @@
 
 Example test suite using specc
 ```C
-#include "../../src/main.h"
+#include "../../src/specc.h"
 
 module(simple, {
   
