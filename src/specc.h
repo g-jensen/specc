@@ -49,7 +49,7 @@ void static printf_void(void* ptr);
 #define describe(msg,test) printf("- %s\n",msg); {test}
 
 #define pass() __spec_result = SPECC_PASS; __fail_line = -1
-#define fail() __spec_result = SPECC_FAIL; if (__fail_line == -1) {__fail_line = __LINE__;}
+#define __fail() __spec_result = SPECC_FAIL; if (__fail_line == -1) {__fail_line = __LINE__;}
 
 #define it(msg, test) pass(); \
   {test}\
@@ -72,12 +72,12 @@ void static printf_void(void* ptr);
   __spec_actual_ptr = NULL; \
 
 
-#define should(assertion) if (!(assertion)) {fail();}
+#define should(assertion) if (!(assertion)) {__fail();}
 
 #define should_not(assertion) should(!(assertion))
 
 #define eq_fail(expected,actual,type)\
-  fail(); \
+  __fail(); \
   type temp_expected = expected; \
   type temp_actual = actual; \
   __spec_expected_ptr = (type*)malloc(sizeof(type)); \
@@ -87,14 +87,14 @@ void static printf_void(void* ptr);
   __current_fmt = (char*)__type_to_fmt(#type); \
 
 #define should_eq(expected, actual, type) \
-  if ((expected) != (actual)) { \
-    fail(); \
+  if (!((expected) == (actual))) { \
+    __fail(); \
     eq_fail(expected,actual,type); \
   }
 
 #define should_not_eq(expected, actual, type) \
-  if ((expected) == (actual)) { \
-    fail(); \
+  if (((expected) == (actual))) { \
+    __fail(); \
     eq_fail(expected,actual,type); \
   }
 
@@ -109,13 +109,13 @@ void static printf_void(void* ptr);
 
 #define should_str_eq(expected, actual) \
   if (strcmp(expected,actual) != 0) { \
-    fail(); \
+    __fail(); \
     str_eq_fail(expected,actual); \
   }
 
 #define should_str_not_eq(expected, actual) \
   if (strcmp(expected,actual) == 0) { \
-    fail(); \
+    __fail(); \
     str_eq_fail(expected,actual); \
   }
 
@@ -130,3 +130,4 @@ void static printf_void(void* ptr);
    __fail(); \
    eq_fail(expected,actual,double); \
   }
+  

@@ -30,6 +30,18 @@ module(simple, {
       should_eq(&a,&b,int*);
     });
 
+    it("passing double equality", {
+      should_double_eq(4.0,3.9,0.1);
+    });
+
+    it("failing double equality", {
+      should_double_eq(4.0,3.9,0.05);
+    });
+
+    it("passing double inequality", {
+      should_double_not_eq(4.0,3.9,0.05);
+    });
+
     it("failing string test", {
       should_str_eq("hello","bye");
     });
