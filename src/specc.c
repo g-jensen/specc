@@ -6,6 +6,7 @@ __fun_list* __tail = NULL;
 size_t __pass_count = 0;
 size_t __fail_count = 0;
 size_t __fail_line = -1;
+size_t __nest_level = 0;
 int __spec_result = -1;
 void* __spec_expected_ptr = NULL;
 void* __spec_actual_ptr = NULL;
@@ -25,9 +26,12 @@ void __fun_list_add(__function f) {
   }
 }
 
-void __printf_color(const char* color, const char * format, ...) {
+void __printf_color_and_nest(size_t nest_level, const char* color, const char * format, ...) {
   va_list args;
   va_start(args,format);
+  for (size_t i = 0; i < nest_level; i++) {
+    printf("  ");
+  }
   printf("%s",color);
   vprintf(format,args);
   printf(SPECC_COLOR_CLEAR);
@@ -100,8 +104,8 @@ void __printf_expected_actual() {
 void static print_summary(size_t pass_count, size_t fail_count) {
   size_t total = pass_count + fail_count;
   printf("\nSpec Summary:\n");
-  __printf_color(SPECC_COLOR_GREEN,"- %lu Passed\n",pass_count);
-  __printf_color(SPECC_COLOR_RED,"- %lu Failed\n",fail_count);
+  __printf_color_and_nest(0, SPECC_COLOR_GREEN,"- %lu Passed\n",pass_count);
+  __printf_color_and_nest(0, SPECC_COLOR_RED,"- %lu Failed\n",fail_count);
   printf("- %lu Total\n",total);
 }
 

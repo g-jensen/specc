@@ -34,6 +34,30 @@ module(simple, {
       should_double_eq(4.0,3.9,0.1);
     });
 
+    context("context in middle", {
+      it("failing pointer test", {
+        int a = 5;
+        int b = 5;
+        should_eq(&a,&b,int*);
+      });
+
+      context("nested context", {
+        it("failing pointer test", {
+          int a = 5;
+          int b = 5;
+        should_eq(&a,&b,int*);
+        });
+
+        it("passing double equality", {
+          should_double_eq(4.0,3.9,0.1);
+        });
+      });
+
+      it("passing double equality", {
+        should_double_eq(4.0,3.9,0.1);
+      });
+    });
+
     it("failing double equality", {
       should_double_eq(4.0,3.9,0.05);
     });
@@ -44,6 +68,16 @@ module(simple, {
 
     it("failing string test", {
       should_str_eq("hello","bye");
+    });
+
+    context("new context", {
+      it("passing double inequality", {
+        should_double_not_eq(4.0,3.9,0.05);
+      });
+
+      it("failing string test", {
+        should_str_eq("hello","bye");
+      });
     });
   });
 });

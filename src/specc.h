@@ -18,13 +18,14 @@ extern __fun_list* __tail;
 extern size_t __pass_count;
 extern size_t __fail_count;
 extern size_t __fail_line;
+extern size_t __nest_level;
 extern int __spec_result;
 extern void* __spec_expected_ptr;
 extern void* __spec_actual_ptr;
 extern char* __current_fmt;
 
 void __fun_list_add(__function f);
-void __printf_color(const char* color,const char * format, ...);
+void __printf_color_and_nest(size_t nest_level, const char* color,const char * format, ...);
 const char* __type_to_fmt(const char* type);
 void __printf_expected_actual();
 
@@ -46,7 +47,9 @@ void static printf_void(void* ptr);
       __fun_list_add(f);\
   }
 
-#define describe(msg,test) printf("- %s\n",msg); {test}
+#define describe(msg,test) __printf_color_and_nest(__nest_level,SPECC_COLOR_CLEAR,"- %s\n",msg); __nest_level++; {test}  __nest_level--;
+
+#define context(msg,test) describe(msg,test)
 
 #define pass() __spec_result = SPECC_PASS; __fail_line = -1
 #define __fail() __spec_result = SPECC_FAIL; if (__fail_line == -1) {__fail_line = __LINE__;}
@@ -55,11 +58,12 @@ void static printf_void(void* ptr);
   {test}\
   if (__spec_result == SPECC_PASS) {\
     __pass_count++; \
-    __printf_color(SPECC_COLOR_GREEN,"  - %s\n",msg);\
+    __printf_color_and_nest(__nest_level, SPECC_COLOR_GREEN,"- %s\n",msg);\
   }\
   else {\
     __fail_count++; \
-    __printf_color(SPECC_COLOR_RED,"  X %s\n    - %s:%d",msg,__FILE__,__fail_line);\
+    __printf_color_and_nest(__nest_level, SPECC_COLOR_RED,"X %s\n",msg);\
+    __printf_color_and_nest(__nest_level+1, SPECC_COLOR_RED,"- %s:%d",__FILE__,__fail_line);\
     if (__spec_expected_ptr != __spec_actual_ptr) { \
       __printf_expected_actual(); \
     } else { \
