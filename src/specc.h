@@ -49,15 +49,18 @@ void static printf_void(void* ptr);
       __fun_list_add(f);\
   }
 
-#define describe(msg,test) __printf_color_and_nest(__nest_level,SPECC_COLOR_CLEAR,"- %s\n",msg); __nest_level++; {test}  __nest_level--;
+#define describe(msg,...) __printf_color_and_nest(__nest_level,SPECC_COLOR_CLEAR,"- %s\n",msg); __nest_level++; {__VA_ARGS__}  __nest_level--;
 
-#define context(msg,test) describe(msg,test)
+#define context(msg,...) describe(msg,__VA_ARGS__)
 
 #define pass() __spec_result = SPECC_PASS; __fail_line = -1
 #define __fail() __spec_result = SPECC_FAIL; if (__fail_line == -1) {__fail_line = __LINE__;}
 
-#define it(msg, test) pass(); \
-  {test}\
+#define it(msg, ...) \
+  pass(); \
+  {\
+  __VA_ARGS__\
+  }\
   if (__spec_result == SPECC_PASS) {\
     __pass_count++; \
     __printf_color_and_nest(__nest_level, SPECC_COLOR_GREEN,"- %s\n",msg);\
