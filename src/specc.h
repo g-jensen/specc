@@ -3,6 +3,8 @@
 #include <stdarg.h>
 #include <string.h>
 
+#define SPECC
+
 typedef void (*__function)(void);
 
 struct __fun_list { 
