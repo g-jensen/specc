@@ -1,4 +1,4 @@
-#include "string.h"
+#include "../headers/string.h"
 
 // TODO - IndexOutOfBounds exception? Idk how this will work. Segfault for now.
 char string_charAt(char* s, size_t idx) {

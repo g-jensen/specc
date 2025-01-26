@@ -1,5 +1,5 @@
-#include "string.h"
-#include "../../src/specc.h"
+#include "../headers/string.h"
+#include "../../../src/specc.h"
 
 module(string,
     describe("string_charAt",
