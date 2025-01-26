@@ -39,6 +39,41 @@ module(simple, {
       should_eq(5,my_function(),int);
     });
 
+    it("pass followed by a fail", {
+      should_eq(2,2,int);
+      should_eq(5,2,int);
+    });
+
+    it("fail followed by a pass", {
+      should_eq(5,2,int);
+      should_eq(2,2,int);
+    });
+
+    it("multiple failures", {
+      should_eq(1,2,int);
+      should_eq(3,2,int);
+    });
+
+    context("should_str_not_eq", {
+      it("passes", {
+        should_str_not_eq("hi","bye");
+      });
+
+      it("fails", {
+        should_str_not_eq("hi","hi");
+      });
+    });
+
+    context("should_double_not_eq", {
+      it("passes", {
+        should_double_not_eq(0.f,10.f,1.f);
+      });
+
+      it("fails", {
+        should_double_not_eq(0.f,0.5f,1.f);
+      });
+    });
+
     context("context in middle", {
       it("failing pointer test", {
         int a = 5;
