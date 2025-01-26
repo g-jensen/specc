@@ -48,10 +48,13 @@ Output:
 * `should_double_eq` (with given err)
 * `should_double_not_eq` (with given err)
 
-## Stubbing
-The only support specc has for any kind of 'stubbing' is a `#define SPECC` for conditional logic when running the tests.
+You can also implement your own custom comparisons. An example of this can be found in examples/custom
 
-# Buildling
+
+## Stubbing
+The only support specc has for any kind of 'stubbing' is a `#define SPECC` to allow different behavior when tests are being run.
+
+# Building
 ## Custom
 specc's entry point is in `src/specc.c` so all you have to do is
 ```
