@@ -56,16 +56,10 @@ gcc -c src/specc.c
 ```
 and then link all of your spec files.
 
-## Pre-made runner
-The runner in `runner/specc_runner.clj` requires Clojure to be installed.
+## Makefile
+```
+# alternatively, `make spec-auto`
+make spec
+```
 
-Once Clojure is installed, configure `deps.edn` to make the runner look at the directories you want.
-
-Then run:
-```
-clj -Mspecc-all
-```
-or
-```
-clj -Mspecc custom-path1 custom-path2
-```
+Right now, the Makefile is configured to run the simple example, but it isn't too hard to change it for your needs.
