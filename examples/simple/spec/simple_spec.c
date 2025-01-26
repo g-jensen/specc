@@ -1,4 +1,5 @@
-#include "../../src/specc.h"
+#include "../../../src/specc.h"
+#include "../headers/simple.h"
 
 module(simple, {
   
@@ -32,6 +33,10 @@ module(simple, {
 
     it("passing double equality", {
       should_double_eq(4.0,3.9,0.1);
+    });
+
+    it("passing using my_function()", {
+      should_eq(5,my_function(),int);
     });
 
     context("context in middle", {
