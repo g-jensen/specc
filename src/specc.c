@@ -8,9 +8,8 @@ size_t __fail_count = 0;
 size_t __fail_line = -1;
 size_t __nest_level = 0;
 int __spec_result = -1;
-void* __spec_expected_ptr = NULL;
-void* __spec_actual_ptr = NULL;
 char* __current_fmt = NULL;
+char* __current_it_msg = "[specc] something went wrong!";
 
 void __fun_list_add(__function f) {
   if (!__head) {
@@ -39,66 +38,29 @@ void __printf_color_and_nest(size_t nest_level, const char* color, const char * 
 
 const char* __type_to_fmt(const char* type) {
   if      (strcmp("char",type) == 0)
-    return "\'%c\'";
+    return " | Expected: \'%c\' Actual: \'%c\'";
   else if (strcmp("int",type) == 0)
-    return "%d";
+    return " | Expected: %d Actual: %d";
   else if (strcmp("float",type) == 0)
-    return "%f";
+    return " | Expected: %f Actual: %f";
   else if (strcmp("unsigned int",type) == 0)
-    return "%i";
+    return " | Expected: %i Actual: %i";
   else if (strcmp("short",type) == 0)
-    return "%hi";
+    return " | Expected: %hi Actual: %hi";
   else if (strcmp("unsigned short",type) == 0)
-    return "%hu";
+    return " | Expected: %hu Actual: %hu";
   else if (strcmp("long",type) == 0)
-    return "%ld";
+    return " | Expected: %ld Actual: %ld";
   else if (strcmp("long double",type) == 0)
-    return "%Lf";
+    return " | Expected: %Lf Actual: %Lf";
   else if (strcmp("double",type) == 0)
-    return "%lf";
+    return " | Expected: %lf Actual: %lf";
   else if (strcmp("unsigned long",type) == 0)
-    return "%lu";
+    return " | Expected: %lu Actual: %lu";
   else if (strcmp("unsigned long long",type) == 0)
-    return "%hu";
+    return " | Expected: %hu Actual: %hu";
   else 
-    return "%p";
-}
-
-void static printf_void(void* ptr) {
-  if      (strcmp("\'%c\'",__current_fmt) == 0)
-    printf(__current_fmt,*(char*)ptr);
-  else if (strcmp("\"%s\"",__current_fmt) == 0)
-    printf(__current_fmt,(char*)ptr);
-  else if (strcmp("%d",__current_fmt) == 0)
-    printf(__current_fmt,*(int*)ptr);
-  else if (strcmp("%f",__current_fmt) == 0)
-    printf(__current_fmt,*(float*)ptr);
-  else if (strcmp("%i",__current_fmt) == 0)
-    printf(__current_fmt,*(unsigned int*)ptr);
-  else if (strcmp("%hi",__current_fmt) == 0)
-    printf(__current_fmt,*(short*)ptr);
-  else if (strcmp("%hu",__current_fmt) == 0)
-    printf(__current_fmt,*(unsigned short*)ptr);
-  else if (strcmp("%ld",__current_fmt) == 0)
-    printf(__current_fmt,*(long*)ptr);
-  else if (strcmp("%Lf",__current_fmt) == 0)
-    printf(__current_fmt,*(long double*)ptr);
-  else if (strcmp("%lf",__current_fmt) == 0)
-    printf(__current_fmt,*(double*)ptr);
-  else if (strcmp("%lu",__current_fmt) == 0)
-    printf(__current_fmt,*(unsigned long*)ptr);
-  else if (strcmp("%hu",__current_fmt) == 0)
-    printf(__current_fmt,*(unsigned long long*)ptr);
-  else
-    printf(__current_fmt,ptr);
-}
-
-void __printf_expected_actual() {
-  printf(" | Expected: ");
-  printf_void(__spec_expected_ptr);
-  printf(" Actual: ");
-  printf_void(__spec_actual_ptr);
-  printf("\n");
+    return " | Expected: %p Actual: %p";
 }
 
 void static print_summary(size_t pass_count, size_t fail_count) {
