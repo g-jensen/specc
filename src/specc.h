@@ -118,4 +118,14 @@ void static free_flist(__fun_list* head);
   if (expected+err >= actual && expected-err <= actual) {\
     specc_fail_message(" | Expected: %lf Actual: %lf With Error: %lf",expected,actual,err)\
   }
+
+#define should_float_eq(expected,actual,err)\
+  if (!(expected+err >= actual && expected-err <= actual)) {\
+    specc_fail_message(" | Expected: %f Actual: %f With Error: %f",expected,actual,err)\
+  }
+
+#define should_float_not_eq(expected,actual,err)\
+  if (expected+err >= actual && expected-err <= actual) {\
+    specc_fail_message(" | Expected: %f Actual: %f With Error: %f",expected,actual,err)\
+  }
   
