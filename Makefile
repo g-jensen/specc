@@ -19,7 +19,8 @@ spec: compile-spec
 	rm -f *.o
 	./specc
 
-compile-spec: compile-src
+compile-spec:
+	$(CC) -c -DSPECC $(SRC_FILES)
 	$(CC) -c $(SPEC_FILES) $(SPECC)/specc.c
 
 compile-main: compile-src
