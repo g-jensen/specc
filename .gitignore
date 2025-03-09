@@ -2,3 +2,4 @@
 specc
 main
 *.o
+output*.txt
