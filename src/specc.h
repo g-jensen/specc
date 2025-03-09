@@ -41,10 +41,11 @@ void static free_flist(__fun_list* head);
 #define SPECC_COLOR_CLEAR "\033[0m"
 
 #define module(f,tests) \
-  static void f(void) {printf("[%s]\n",__func__); tests}\
+  static void f(void); \
   static void __attribute__((constructor)) __construct_##f(void) {\
-      __fun_list_add(f);\
-  }
+    __fun_list_add(f);\
+  }\
+  static void f(void) {printf("[%s]\n",__func__); tests}
 
 #define describe(msg,...) __printf_color_and_nest(__nest_level,SPECC_COLOR_CLEAR,"- %s\n",msg); __nest_level++; {__VA_ARGS__}  __nest_level--;
 

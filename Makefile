@@ -8,7 +8,7 @@ SRC_FILES != find $(SRC) -name '*.c'
 SPEC_FILES != find $(SPEC) -name '*.c'
 
 main: compile-main
-	$(CC) *.o -o cclj
+	$(CC) *.o -o main
 	rm -f *.o
 
 spec-auto:
