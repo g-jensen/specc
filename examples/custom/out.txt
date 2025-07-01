@@ -1,0 +1,15 @@
+gcc -c -DSPECC examples/custom/src/custom.c
+gcc -c examples/custom/spec/custom_spec.c src/specc.c
+gcc *.o -o specc
+rm -f *.o
+./specc
+[custom]
+[0m- custom test
+[0m  [0;32m- passing custom test
+[0m  [1;31mX failing custom test
+[0m    [1;31m- examples/custom/spec/custom_spec.c:21[0m | Expected: {1.000000, 5.000000} Actual: {2.000000, 6.000000}
+
+Spec Summary:
+[0;32m- 1 Passed
+[0m[1;31m- 1 Failed
+[0m- 2 Total

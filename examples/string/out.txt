@@ -1,0 +1,39 @@
+gcc -c -DSPECC examples/string/src/string.c
+gcc -c examples/string/spec/string_spec.c src/specc.c
+gcc *.o -o specc
+rm -f *.o
+./specc
+[string]
+[0m- string_charAt
+[0m  [0;32m- gets first index
+[0m  [0;32m- gets second index
+[0m[0m- string_length
+[0m  [0;32m- zero length
+[0m  [0;32m- length 1
+[0m  [0;32m- length 3
+[0m[0m- string_compareTo
+[0m  [0;32m- compares to empty string
+[0m  [0;32m- compares with first char different
+[0m  [0;32m- compares with second char different
+[0m  [0;32m- compares with third char different
+[0m  [0;32m- compares exact same strings
+[0m[0m- string_equals
+[0m  [0;32m- empty strings are equal
+[0m  [0;32m- strings of different lengths are not equal
+[0m  [0;32m- strings with different characters are not equal
+[0m  [0;32m- strings with same characters are equal
+[0m[0m- string_copy
+[0m  [0;32m- copies empty string
+[0m  [0;32m- copies populated string
+[0m[0m- string_toLowerCase
+[0m  [0;32m- does nothing to lowercase string
+[0m  [1;31mX converts uppcase to lowercase
+[0m    [1;31m- examples/string/spec/string_spec.c:105[0m | Expected: "aB" Actual: "ab"
+[0m- string_compareToIgnoreCase
+[0m  [0;32m- has normal compareTo behavior for strings of same case
+[0m  [0;32m- ignores case
+[0m
+Spec Summary:
+[0;32m- 19 Passed
+[0m[1;31m- 1 Failed
+[0m- 20 Total

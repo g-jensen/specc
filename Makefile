@@ -4,8 +4,8 @@ SRC = $(DIR)/src
 SPEC = $(DIR)/spec
 SPECC = src
 MAIN = $(DIR)/main.c
-SRC_FILES != find $(SRC) -name '*.c'
-SPEC_FILES != find $(SPEC) -name '*.c'
+SRC_FILES := $(shell find $(SRC) -name '*.c')
+SPEC_FILES := $(shell find $(SPEC) -name '*.c')
 
 main: compile-main
 	$(CC) *.o -o main
