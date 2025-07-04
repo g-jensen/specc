@@ -91,4 +91,5 @@ int main() {
   call_flist(__head);
   free_flist(__head);
   print_summary(__pass_count,__fail_count);
+  return __fail_count > 0 ? 1 : 0;
 }
