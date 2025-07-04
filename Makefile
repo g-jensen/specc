@@ -20,7 +20,7 @@ spec: compile-spec
 	./specc
 
 compile-spec:
-	$(CC) -c -DSPECC $(SRC_FILES)
+	-$(CC) -c -DSPECC $(SRC_FILES)
 	$(CC) -c $(SPEC_FILES) $(SPECC)/specc.c
 
 compile-main: compile-src
