@@ -1,0 +1,27 @@
+gcc -c -DSPECC 
+gcc -c examples/readme/spec/readme_spec.c src/specc.c
+gcc *.o -o specc
+rm -f *.o
+./specc
+[readme_example]
+[0m- README Example
+[0m  [0;32m- this is what a passing test looks like
+[0m  [0m- this is a context
+[0m    [0;32m- curlies aren't necessary
+[0m    [1;31mX failing boolean test
+[0m      [1;31m- examples/readme/spec/readme_spec.c:18[0m
+  [1;31mX failing char test
+[0m    [1;31m- examples/readme/spec/readme_spec.c:23[0m | Expected: 'a' Actual: 'b'
+  [1;31mX failing int test
+[0m    [1;31m- examples/readme/spec/readme_spec.c:27[0m | Expected: 1 Actual: 2
+  [1;31mX failing float test
+[0m    [1;31m- examples/readme/spec/readme_spec.c:31[0m | Expected: 0.900000 Actual: 2.400000
+  [1;31mX failing pointer test
+[0m    [1;31m- examples/readme/spec/readme_spec.c:37[0m | Expected: 0x16b84ad1c Actual: 0x16b84ad18
+  [1;31mX failing string test
+[0m    [1;31m- examples/readme/spec/readme_spec.c:41[0m | Expected: "hello" Actual: "bye"
+
+Spec Summary:
+[0;32m- 2 Passed
+[0m[1;31m- 6 Failed
+[0m- 8 Total

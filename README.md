@@ -4,39 +4,55 @@
 
 Example test suite using specc
 ```C
-#include "../../src/specc.h"
+#include "../../../src/specc.h"
 
-module(simple, {
+module(readme_example, {
   
-  describe("simple test",{
+  describe("README Example",{
     
-    it("this is what a passing test looks like",
-      should(1 == 1));
+    it("passes a test",{
+      should(1 == 1);
+    })
 
-    it("failing boolean test",
-      should(1 == 0););
+    context("some context", {
 
-    it("failing char test",
-      should_eq('a','b',char););
+      it("doesn't need curlies",
+        should(1 == 1);
+      )
 
-    it("failing int test",
-      should_eq(1,2,int););
+      it("fails a boolean test", {
+        should(1 == 0);
+      })
+    })
 
-    it("failing float test",
-      should_eq(0.9f,2.4f,float););
+    it("fails a char test", {
+      should_eq('a','b',char);
+    })
 
-    it("failing pointer test", {
+    it("fails an int test", {
+      should_eq(1,2,int);
+    })
+
+    it("fails a float test", {
+      should_eq(0.9f,2.4f,float);
+    })
+
+    it("fails a pointer test", {
       int a = 5;
       int b = 5;
-      should_eq(&a,&b,int*);});
+      should_eq(&a,&b,int*);
+    })
 
-    it("failing string test",
-      should_str_eq("hello","bye"););});});
+    it("fails a string test", {
+      should_str_eq("hello","bye");
+    })
+  })
+})
 ```
 
 Output:
 
-![simple](https://raw.githubusercontent.com/g-jensen/specc/main/resources/simple.png)
+![readme example](https://raw.githubusercontent.com/g-jensen/specc/main/resources/readme.png)
 
 ## Current Comparison Support
 * `should`
