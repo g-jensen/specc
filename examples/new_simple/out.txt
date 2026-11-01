@@ -1,0 +1,40 @@
+passing_spec [0;32mPASS[0m
+failing_bool_spec [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:9
+failing_char_spec [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:13
+    > Expected: 'a' Actual: 'b'
+passing_char_spec [0;32mPASS[0m
+failing_int_spec [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:21
+    > Expected: 1 Actual: 2
+failing_float_spec [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:25
+    > Expected: 0.900000 Actual: 2.400000
+failing_pointer_test [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:31
+    > Expected: 0x7ffe7edb12f0 Actual: 0x7ffe7edb12f4
+passing_double_equality [0;32mPASS[0m
+passing_using_myfunction [0;32mPASS[0m
+pass_followed_by_fail [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:44
+    > Expected: 5 Actual: 2
+fail_followed_by_pass [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:48
+    > Expected: 5 Actual: 2
+multiple_failures [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:53
+    > Expected: 1 Actual: 2
+passing_str_equal [0;32mPASS[0m
+failing_str_equal [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:62
+    > Expected: "hi" Actual: "bye"
+passing_double_equal [0;32mPASS[0m
+failing_double_equal [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:70
+    > Expected: 0.000000 Actual: 10.000000 With Error: 1.000000
+
+Spec Summary:
+[0;32m- 6 Passed
+[0m[1;31m- 10 Failed
+[0m- 16 Total
