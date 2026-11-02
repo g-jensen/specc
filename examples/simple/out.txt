@@ -1,56 +1,40 @@
-gcc -c -DSPECC examples/simple/src/simple.c
-gcc -c examples/simple/spec/simple_spec.c src/specc.c
-gcc *.o -o specc
-rm -f *.o
-./specc
-[simple]
-[0m- simple test
-[0m  [0;32m- this is what a passing test looks like
-[0m  [1;31mX failing boolean test
-[0m    [1;31m- examples/simple/spec/simple_spec.c:13[0m
-  [1;31mX failing char test
-[0m    [1;31m- examples/simple/spec/simple_spec.c:17[0m | Expected: 'a' Actual: 'b'
-  [1;31mX failing int test
-[0m    [1;31m- examples/simple/spec/simple_spec.c:21[0m | Expected: 1 Actual: 2
-  [1;31mX failing float test
-[0m    [1;31m- examples/simple/spec/simple_spec.c:25[0m | Expected: 0.900000 Actual: 2.400000
-  [1;31mX failing pointer test
-[0m    [1;31m- examples/simple/spec/simple_spec.c:31[0m | Expected: 0x16d95ed0c Actual: 0x16d95ed08
-  [0;32m- passing double equality
-[0m  [0;32m- passing using my_function()
-[0m  [1;31mX pass followed by a fail
-[0m    [1;31m- examples/simple/spec/simple_spec.c:44[0m | Expected: 5 Actual: 2
-  [1;31mX fail followed by a pass
-[0m    [1;31m- examples/simple/spec/simple_spec.c:48[0m | Expected: 5 Actual: 2
-  [1;31mX multiple failures
-[0m    [1;31m- examples/simple/spec/simple_spec.c:53[0m | Expected: 1 Actual: 2
-  [0m- should_str_not_eq
-[0m    [0;32m- passes
-[0m    [1;31mX fails
-[0m      [1;31m- examples/simple/spec/simple_spec.c:63[0m | Expected strings to be different: "hi"
-  [0m- should_double_not_eq
-[0m    [0;32m- passes
-[0m    [1;31mX fails
-[0m      [1;31m- examples/simple/spec/simple_spec.c:73[0m | Expected: 0.000000 Actual: 0.500000 With Error: 1.000000
-  [0m- context in middle
-[0m    [1;31mX failing pointer test
-[0m      [1;31m- examples/simple/spec/simple_spec.c:81[0m | Expected: 0x16d95ed04 Actual: 0x16d95ed00
-    [0m- nested context
-[0m      [1;31mX failing pointer test
-[0m        [1;31m- examples/simple/spec/simple_spec.c:88[0m | Expected: 0x16d95ecfc Actual: 0x16d95ecf8
-      [0;32m- passing double equality
-[0m    [0;32m- passing double equality
-[0m  [1;31mX failing double equality
-[0m    [1;31m- examples/simple/spec/simple_spec.c:102[0m | Expected: 4.000000 Actual: 3.900000 With Error: 0.050000
-  [0;32m- passing double inequality
-[0m  [1;31mX failing string test
-[0m    [1;31m- examples/simple/spec/simple_spec.c:110[0m | Expected: "hello" Actual: "bye"
-  [0m- new context
-[0m    [0;32m- passing double inequality
-[0m    [1;31mX failing string test
-[0m      [1;31m- examples/simple/spec/simple_spec.c:119[0m | Expected: "hello" Actual: "bye"
+passing_spec [0;32mPASS[0m
+failing_bool_spec [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:9
+failing_char_spec [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:13
+    > Expected: 'a' Actual: 'b'
+passing_char_spec [0;32mPASS[0m
+failing_int_spec [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:21
+    > Expected: 1 Actual: 2
+failing_float_spec [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:25
+    > Expected: 0.900000 Actual: 2.400000
+failing_pointer_test [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:31
+    > Expected: 0x7ffe7edb12f0 Actual: 0x7ffe7edb12f4
+passing_double_equality [0;32mPASS[0m
+passing_using_myfunction [0;32mPASS[0m
+pass_followed_by_fail [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:44
+    > Expected: 5 Actual: 2
+fail_followed_by_pass [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:48
+    > Expected: 5 Actual: 2
+multiple_failures [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:53
+    > Expected: 1 Actual: 2
+passing_str_equal [0;32mPASS[0m
+failing_str_equal [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:62
+    > Expected: "hi" Actual: "bye"
+passing_double_equal [0;32mPASS[0m
+failing_double_equal [1;31mFAIL[0m
+    examples/new_simple/spec/simple_spec.c:70
+    > Expected: 0.000000 Actual: 10.000000 With Error: 1.000000
 
 Spec Summary:
-[0;32m- 9 Passed
-[0m[1;31m- 15 Failed
-[0m- 24 Total
+[0;32m- 6 Passed
+[0m[1;31m- 10 Failed
+[0m- 16 Total

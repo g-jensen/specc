@@ -1,5 +1,5 @@
 CC = gcc
-DIR = examples/custom
+DIR = examples/simple
 SRC = $(DIR)/src
 SPEC = $(DIR)/spec
 SPECC = src
