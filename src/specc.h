@@ -42,11 +42,11 @@ void static free_flist(__fun_list* head);
 #define SPECC_COLOR_CLEAR "\033[0m"
 
 #define spec(name)\
-  static void name(spec_t*);\
-  static void __attribute__((constructor)) __construct_##name(void) {\
-    __fun_list_add(name, #name);\
+  static void _##name##_spec(spec_t*);\
+  static void __attribute__((constructor)) __construct_##name##_spec(void) {\
+    __fun_list_add(name, _##name##_spec);\
   }\
-  static void name
+  static void _##name##_spec
 
 #define __inline_specc_fail(spec_ptr)\
   spec_ptr->failing = 1;\
