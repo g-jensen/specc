@@ -44,7 +44,7 @@ void static free_flist(__fun_list* head);
 #define spec(name)\
   static void _##name##_spec(spec_t*);\
   static void __attribute__((constructor)) __construct_##name##_spec(void) {\
-    __fun_list_add(name, _##name##_spec);\
+    __fun_list_add(_##name##_spec, #name);\
   }\
   static void _##name##_spec
 
